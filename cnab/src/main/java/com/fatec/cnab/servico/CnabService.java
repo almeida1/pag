@@ -9,10 +9,11 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 @Service
 public class CnabService {
-	private final Path fileStorageLocation;
-	public CnabService(@Value("${file.upload-dir}")String fileUploadDir) {
-		this.fileStorageLocation = Paths.get(fileUploadDir);
-	}
+	@Value("${file.upload-dir}")
+	private final Path fileStorageLocation=null;
+//	public CnabService(@Value("${file.upload-dir}")String fileUploadDir) {
+//		this.fileStorageLocation = Paths.get(fileUploadDir);
+//	}
 	public void uploadCnabFile( MultipartFile file) throws Exception{
 		var fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		var targetLocation = fileStorageLocation.resolve(fileName);
